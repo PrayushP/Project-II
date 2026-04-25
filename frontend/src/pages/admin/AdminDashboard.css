@@ -1,0 +1,138 @@
+/* ===== Dashboard Wrapper ===== */
+.admin-dashboard {
+  padding: 24px;
+  background: #f5f6fa;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.admin-dashboard h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* ===== Stats Grid ===== */
+.admin-dashboard .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-dashboard .stat-card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.admin-dashboard .stat-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+.admin-dashboard .stat-title {
+  font-size: 13px;
+  color: #777;
+}
+
+.admin-dashboard .stat-value {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 6px;
+  color: #111;
+}
+
+/* ===== Content Grid ===== */
+.admin-dashboard .content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ===== Panels ===== */
+.admin-dashboard .panel {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.admin-dashboard .panel h2 {
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+/* ===== Tables ===== */
+.admin-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-dashboard th,
+.admin-dashboard td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-dashboard th {
+  color: #666;
+  font-weight: 600;
+}
+
+/* Zebra striping */
+.admin-dashboard tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Hover row */
+.admin-dashboard tbody tr:hover {
+  background: #f1f5f9;
+}
+
+/* ===== Status Badges ===== */
+.admin-dashboard .badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.admin-dashboard .badge.success {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.admin-dashboard .badge.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.admin-dashboard .badge.failed {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .admin-dashboard .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-dashboard .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .admin-dashboard .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

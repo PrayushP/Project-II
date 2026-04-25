@@ -1,0 +1,162 @@
+/* ===== Page Wrapper ===== */
+.form-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  font-family: Arial, sans-serif;
+}
+
+.form-container h2 {
+  margin-bottom: 18px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+}
+
+/* ===== Form Layout ===== */
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ===== Inputs / Select ===== */
+.form-container input,
+.form-container select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 0 3px rgba(78, 115, 223, 0.15);
+}
+
+/* ===== Radio Section ===== */
+.form-container label {
+  font-size: 14px;
+  color: #333;
+}
+
+.form-container input[type="radio"] {
+  accent-color: #4e73df;
+}
+
+/* Radio wrapper row */
+.form-container form > div:first-child {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* ===== Program List ===== */
+.form-container .program-list {
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.form-container .program-list .title {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-container .program-list div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+/* ===== Button ===== */
+.form-container button {
+  padding: 10px 14px;
+  background: #4e73df;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 6px;
+}
+
+.form-container button:hover {
+  background: #375ad3;
+  transform: translateY(-1px);
+}
+
+/* ===== ComboBox Fix (if needed) ===== */
+.form-container .combobox {
+  width: 100%;
+}
+.form-container .program-list {
+  padding: 14px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-container .program-list .title {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+/* Each program row */
+.form-container .program-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+/* Hover effect */
+.form-container .program-list div:hover {
+  border-color: #4e73df;
+  background: #f5f8ff;
+}
+
+/* Checkbox + label alignment */
+.form-container .program-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Checkbox styling */
+.form-container .program-list input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #4e73df;
+  cursor: pointer;
+  margin-top: 0px;
+}
+
+/* Optional price highlight (from label text) */
+.form-container .program-list label {
+  font-size: 14px;
+  color: #333;
+}

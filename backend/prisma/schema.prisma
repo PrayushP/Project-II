@@ -1,0 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  client
+  admin
+}
+
+enum MembershipStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  CANCELLED
+  EXPIRED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  KHALTI
+  ESEWA
+}
+
+enum FitnessGoal {
+  WEIGHT_LOSS
+  WEIGHT_GAIN
+  MAINTENANCE
+  MUSCLE_BUILDING
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+model user {
+  id                  String          @id @default(uuid())
+  fullName            String
+  email               String          @unique
+  password            String
+  role                Role            @default(client)
+  phoneNumber         String
+  resetPasswordToken  String?
+  resetPasswordExpire DateTime?
+  dateOfBirth         DateTime?
+  gender              Gender?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  profile             profile?
+  joinedAt            DateTime        @default(now())
+  memberships         membership[]
+  gymAttendances      gymAttendance[]
+  payments            payment[]
+  fitnessGoals        fitnessGoal[]
+}
+
+model profile {
+  profileUrl String
+  profileId  String
+  user       user   @relation(fields: [userId], references: [id])
+  userId     String @unique
+}
+
+model plan {
+  id             String       @id @default(uuid())
+  name           String
+  description    String?
+  discount       Float
+  durationInDays Int
+  memberships    membership[]
+}
+
+model program {
+  id          String              @id @default(uuid())
+  name        String
+  price       Float
+  memberships membershipProgram[]
+}
+
+model membershipProgram {
+  id           String     @id @default(uuid())
+  membershipId String
+  programId    String
+  price        Float
+  membership   membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  program      program    @relation(fields: [programId], references: [id], onDelete: Cascade)
+}
+
+model membership {
+  id                 String              @id @default(uuid())
+  user               user                @relation(fields: [userId], references: [id])
+  userId             String
+  plan               plan                @relation(fields: [planId], references: [id], onDelete: Cascade)
+  planId             String
+  price              Float
+  status             MembershipStatus
+  startDate          DateTime?           @default(now())
+  endDate            DateTime?
+  payments           payment[]
+  gymAttendances     gymAttendance[]
+  membershipPrograms membershipProgram[]
+}
+
+model payment {
+  id           String        @id @default(uuid())
+  membership   membership    @relation(fields: [membershipId], references: [id])
+  membershipId String
+  user         user          @relation(fields: [userId], references: [id])
+  userId       String
+  amount       Float
+  paymentDate  DateTime      @default(now())
+  method       PaymentMethod
+  status       PaymentStatus
+  createdAt    DateTime      @default(now())
+}
+
+model gymAttendance {
+  id           String     @id @default(uuid())
+  user         user       @relation(fields: [userId], references: [id])
+  userId       String
+  membership   membership @relation(fields: [membershipId], references: [id])
+  membershipId String
+  checkIn      DateTime   @default(now())
+  checkOut     DateTime?
+}
+
+model fitnessGoal {
+  id           String      @id @default(uuid())
+  user         user        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  goalType     FitnessGoal
+  startWeight  Float?
+  targetWeight Float?
+  height       Float?
+  bmi          Float?
+  age          Int?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
