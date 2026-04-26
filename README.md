@@ -1,0 +1,1 @@
+This is a project for BCA 6th semester.It is created using PERN stack. It is a Gym management system leveraged with random forest algorithm to give workout recommendations for the end-users. This also contains the use of nodemailer to notify the users with their membership subscription deadline
